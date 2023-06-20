@@ -5,6 +5,7 @@ class Gameboard {
         this.grid = this.createGrid();
         this.ships = [];
         this.missed = [];
+        this.allSunkStatus = false;
     }
 
     createGrid() {
@@ -46,6 +47,13 @@ class Gameboard {
             }
         } else if (!this.grid[row][col]) {
             this.missed.push(coord);
+        }
+        this.checkIfAllSunk();
+    }
+
+    checkIfAllSunk() {
+        if (this.ships.every(item => item.sunkStatus === true)) {
+            this.allSunkStatus = true;
         }
     }
 }
