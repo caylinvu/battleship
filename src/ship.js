@@ -3,6 +3,7 @@ class Ship {
         this.shipSize = size;
         this.hitCount = 0;
         this.sunkStatus = false;
+        this.coordinates = [];
     }
 
     hit() {
