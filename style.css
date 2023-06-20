@@ -2,6 +2,11 @@ body {
     margin: 0;
 }
 
+.main-content {
+    display: flex;
+    justify-content: center;
+}
+
 .header {
     text-align: center;
     font-size: 100px;
@@ -12,6 +17,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 50px;
+    width: fit-content;
 }
 
 .player-board,
@@ -26,4 +32,8 @@ body {
 .player-board div,
 .ai-board div {
     border: solid black 1px;
+}
+
+.player-ship {
+    background-color: darkslategrey;
 }
