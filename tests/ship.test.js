@@ -2,7 +2,7 @@ import Ship from "../src/ship";
 
 test('constructor creates ship with correct length', () => {
     const testShip = new Ship(4);
-    expect(testShip.shipLength).toBe(4);
+    expect(testShip.shipSize).toBe(4);
 });
 
 test('hit() adds to hitCount', () => {
