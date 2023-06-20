@@ -34,9 +34,9 @@ class Gameboard {
     };
 
     receiveAttack(coord) {
-        if (this.includesArray(this.missed, coord)) {
-            return;
-        }
+        // if (this.includesArray(this.missed, coord)) {
+        //     return;
+        // }
         const row = coord[0];
         const col = coord[1];
         if (this.grid[row][col] === 'X'){
