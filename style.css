@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+.header {
+    text-align: center;
+    font-size: 100px;
+    padding: 50px 50px 100px;
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.player-board,
+.ai-board {
+    display: grid;
+    width: 400px;
+    height: 400px;
+    grid-template-columns: repeat(10, 1fr);
+    border: solid black 1px;
+}
+
+.player-board div,
+.ai-board div {
+    border: solid black 1px;
+}
