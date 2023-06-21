@@ -4,19 +4,26 @@ const aiContainer = document.querySelector('.ai-board');
 const display = (() => {
 
     const createGameboard = (parent) => {
-        for (let i = 0; i < 100; i++) {
-            const square = document.createElement('div');
-            parent.appendChild(square);
+        // for (let i = 0; i < 100; i++) {
+        //     const square = document.createElement('div');
+        //     parent.appendChild(square);
+        // }
+        for (let j = 0; j < 10; j++) {
+            for(let k = 0; k < 10 ; k++) {
+                const square = document.createElement('div');
+                parent.appendChild(square);
+                square.setAttribute('id',`${j},${k}`);
+            }
         }
     }
 
     const showPlayerShips = (board) => {
-        const squares = document.querySelectorAll('.player-board > div');
+        const playerSquares = document.querySelectorAll('.player-board > div');
         let i = 0;
         for (let j = 0; j < 10; j++) {
             for(let k = 0; k < 10 ; k++) {
                 if (board.grid[j][k] === 'X') {
-                    squares[i].classList.add('player-ship');
+                    playerSquares[i].classList.add('player-ship');
                 }
                 i++;
             }
@@ -32,7 +39,15 @@ const display = (() => {
         createGameboard(aiContainer);
     }
 
-    return { createPlayerBoard, createAiBoard }
+    const takeAttack = (coord, board, div) => {
+        if (board.includesArray(board.missed, coord)) {
+            div.classList.add('miss');
+        } else {
+            div.classList.add('hit');
+        }
+    }
+
+    return { createPlayerBoard, createAiBoard, takeAttack }
 
 })();
 

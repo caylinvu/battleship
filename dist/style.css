@@ -1,3 +1,10 @@
+:root {
+    --ship-color: #2f4f4f;
+    --hover-color: #e9e9e9;
+    --hit-color: #ff9d84;
+    --miss-color: #92e092;
+}
+
 body {
     margin: 0;
 }
@@ -34,6 +41,31 @@ body {
     border: solid black 1px;
 }
 
+.ai-board div:hover {
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
 .player-ship {
-    background-color: darkslategrey;
+    background-color: var(--ship-color);
+}
+
+.hit {
+    background-color: var(--hit-color);
+    pointer-events: none;
+}
+
+.miss {
+    background-color: var(--miss-color);
+    pointer-events: none;
+}
+
+.ai-board > .hit:hover {
+    cursor: default;
+    background-color: var(--hit-color);
+}
+
+.ai-board > .miss:hover {
+    cursor: default;
+    background-color: var(--miss-color);
 }

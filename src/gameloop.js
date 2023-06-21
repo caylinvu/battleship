@@ -26,6 +26,22 @@ const gameloop = (() => {
 
     // functions to add ships
 
+    let turn = 'player';
+
+    const play = (e) => {
+        if (turn === 'player') {
+            const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
+            player.attack(coord, aiGameboard);
+            display.takeAttack(coord, aiGameboard, e.target);
+            turn = 'ai';
+        } else if (turn === 'ai') {
+            // ai.randomAttack(playerGameboard);
+            turn = 'player';
+        }
+    }
+
+    return { play }
+
 })();
 
 export default gameloop
