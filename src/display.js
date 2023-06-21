@@ -10,10 +10,8 @@ const display = (() => {
         }
     }
 
-    const playerBoard = (board) => {
-        createGameboard(playerContainer);
+    const showPlayerShips = (board) => {
         const squares = document.querySelectorAll('.player-board > div');
-
         let i = 0;
         for (let j = 0; j < 10; j++) {
             for(let k = 0; k < 10 ; k++) {
@@ -23,14 +21,18 @@ const display = (() => {
                 i++;
             }
         }
-    
     }
 
-    const aiBoard = (board) => {
+    const createPlayerBoard = (board) => {
+        createGameboard(playerContainer);
+        showPlayerShips(board);
+    }
+
+    const createAiBoard = (board) => {
         createGameboard(aiContainer);
     }
 
-    return { playerBoard, aiBoard }
+    return { createPlayerBoard, createAiBoard }
 
 })();
 
