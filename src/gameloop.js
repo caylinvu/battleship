@@ -31,15 +31,20 @@ const gameloop = (() => {
 
     const checkWinner = (playerBoard, aiBoard) => {
         if (playerBoard.allSunkStatus) {
-            winner = 'ai';
             console.log('ai wins!!!');
-        } else if (aiBoard.allSunkStatus) {
-            winner = 'player';
+            winner = 'ai';
+        }
+        if (aiBoard.allSunkStatus) {
             console.log('player wins!!!');
+            winner = 'player';
         }
     }
 
     const play = (e) => {
+        if (winner) {
+            return;
+        }
+        
         if (turn === 'player') {
             const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
             player.attack(coord, aiGameboard);
@@ -58,7 +63,6 @@ const gameloop = (() => {
         }
 
         checkWinner(playerGameboard, aiGameboard);
-        console.log(winner);
     }
 
     return { play, winner }
