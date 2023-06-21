@@ -27,6 +27,17 @@ const gameloop = (() => {
     // functions to add ships
 
     let turn = 'player';
+    let winner = '';
+
+    const checkWinner = (playerBoard, aiBoard) => {
+        if (playerBoard.allSunkStatus) {
+            winner = 'ai';
+            console.log('ai wins!!!');
+        } else if (aiBoard.allSunkStatus) {
+            winner = 'player';
+            console.log('player wins!!!');
+        }
+    }
 
     const play = (e) => {
         if (turn === 'player') {
@@ -35,12 +46,22 @@ const gameloop = (() => {
             display.takeAttack(coord, aiGameboard, e.target);
             turn = 'ai';
         } else if (turn === 'ai') {
-            // ai.randomAttack(playerGameboard);
+            const coord = ai.randomAttack(playerGameboard);
+            const playerSquares = document.querySelectorAll('.player-board > div');
+            playerSquares.forEach((playerSquare) => {
+                const idCoord = [Number(playerSquare.id[0]), Number(playerSquare.id[2])];
+                if (idCoord[0] === coord[0] && idCoord[1] === coord[1]) {
+                    display.takeAttack(coord, playerGameboard, playerSquare);
+                }
+            });
             turn = 'player';
         }
+
+        checkWinner(playerGameboard, aiGameboard);
+        console.log(winner);
     }
 
-    return { play }
+    return { play, winner }
 
 })();
 

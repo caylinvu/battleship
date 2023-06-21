@@ -25,6 +25,7 @@ class Player {
         }
         gameboard.receiveAttack(randomCoord);
         this.hits.push(randomCoord);
+        return randomCoord;
     }
 }
 
