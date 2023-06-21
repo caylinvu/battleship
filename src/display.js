@@ -4,10 +4,6 @@ const aiContainer = document.querySelector('.ai-board');
 const display = (() => {
 
     const createGameboard = (parent) => {
-        // for (let i = 0; i < 100; i++) {
-        //     const square = document.createElement('div');
-        //     parent.appendChild(square);
-        // }
         for (let j = 0; j < 10; j++) {
             for(let k = 0; k < 10 ; k++) {
                 const square = document.createElement('div');
@@ -35,7 +31,7 @@ const display = (() => {
         showPlayerShips(board);
     }
 
-    const createAiBoard = (board) => {
+    const createAiBoard = () => {
         createGameboard(aiContainer);
     }
 

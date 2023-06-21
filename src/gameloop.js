@@ -2,6 +2,9 @@ import Player from "./player";
 import Gameboard from "./gameboard";
 import display from "./display";
 
+const winnerPopup = document.querySelector('.winner-popup');
+const winnerText = document.querySelector('.winner-text');
+
 const gameloop = (() => {
 
     const player = new Player('player');
@@ -21,7 +24,7 @@ const gameloop = (() => {
     aiGameboard.placeShip(3, [[4,5],[5,5],[6,5]]);
     aiGameboard.placeShip(3, [[0,5],[0,6],[0,7]]);
     aiGameboard.placeShip(2, [[5,8],[5,9]]);
-    display.createAiBoard(aiGameboard);
+    display.createAiBoard();
 
 
     // functions to add ships
@@ -31,12 +34,14 @@ const gameloop = (() => {
 
     const checkWinner = (playerBoard, aiBoard) => {
         if (playerBoard.allSunkStatus) {
-            console.log('ai wins!!!');
             winner = 'ai';
+            winnerPopup.style.display = 'block';
+            winnerText.textContent = 'The computer wins!';
         }
         if (aiBoard.allSunkStatus) {
-            console.log('player wins!!!');
             winner = 'player';
+            winnerPopup.style.display = 'block';
+            winnerText.textContent = 'Congrats, you win!';
         }
     }
 
@@ -44,7 +49,7 @@ const gameloop = (() => {
         if (winner) {
             return;
         }
-        
+
         if (turn === 'player') {
             const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
             player.attack(coord, aiGameboard);
