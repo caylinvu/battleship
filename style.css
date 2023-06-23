@@ -18,15 +18,17 @@ button {
     font-family: inherit;
 }
 
-.main-content {
-    display: flex;
-    justify-content: center;
-}
-
 .header {
     text-align: center;
     font-size: 100px;
     padding: 50px 50px 100px;
+}
+
+/* ---------------MAIN CONTENT/GAMEBOARDS--------------- */
+
+.main-content {
+    display: flex;
+    justify-content: center;
 }
 
 .board-container {
@@ -37,7 +39,8 @@ button {
 }
 
 .player-board,
-.ai-board {
+.ai-board,
+.placement-board {
     display: grid;
     width: 400px;
     height: 400px;
@@ -46,7 +49,8 @@ button {
 }
 
 .player-board div,
-.ai-board div {
+.ai-board div,
+.placement-board div {
     border: solid 1px var(--primary-color);
 }
 
@@ -57,6 +61,7 @@ button {
 
 .player-ship {
     background-color: var(--ship-color);
+    pointer-events: none;
 }
 
 .hit {
@@ -79,7 +84,56 @@ button {
     background-color: var(--miss-color);
 }
 
-/* ---------------END GAME POPUP--------------- */
+/* ---------------PLACEMENT BOARD--------------- */
+
+
+.placement-board div:hover {
+    background-color: var(--hover-color);
+}
+
+.placement-board > .player-ship:hover {
+    cursor: default;
+    background-color: var(--ship-color);
+}
+
+.hover {
+    background-color: var(--hover-color);
+}
+
+/* ---------------PLACE SHIPS POPUP--------------- */
+
+.place-ships-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--secondary-color);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.welcome-text {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.ship-text {
+    font-size: 35px;
+    margin-top: 30px;
+}
+
+.rotate-btn {
+    margin: 30px 0;
+    padding: 10px 20px;
+    font-size: 35px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* ---------------WINNER POPUP--------------- */
 
 .winner-popup {
     display: none;
@@ -99,7 +153,7 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--hover-color);
+    background-color: var(--secondary-color);
     padding: 40px;
     border-radius: 15px;
     text-align: center;
