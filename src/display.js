@@ -25,6 +25,7 @@ const display = (() => {
             for(let k = 0; k < 10 ; k++) {
                 if (board.grid[j][k] === 'X') {
                     playerSquares[i].classList.add('player-ship');
+                    placementSquares[i].classList.remove('hover');
                     placementSquares[i].classList.add('player-ship');
                 }
                 i++;
@@ -97,26 +98,63 @@ const display = (() => {
                     shipText.textContent = `Place your ${board.shipTypes[i].name}`;
                 }
             });
+            
+            placementSquare.addEventListener('mouseover', (e) => {
+                const arrOfCoord = [];
+                const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
+                const row = coord[0];
+                const col = coord[1];
+                arrOfCoord.push(coord);
+                if (shipOrientation === 'horizontal') {
+                    for (let j = col + 1; j < col + board.shipTypes[i].size; j++) {
+                        const tmpCoord = [row, j];
+                        arrOfCoord.push(tmpCoord);
+                    }
+                } else if (shipOrientation === 'vertical') {
+                    for (let j = row + 1; j < row + board.shipTypes[i].size; j++) {
+                        const tmpCoord = [j, col];
+                        arrOfCoord.push(tmpCoord);
+                    }
+                }
+                if (checkValidity(board, arrOfCoord)) {
+                    for (let j = 0; j < arrOfCoord.length; j++) {
+                        const tmpCoord = arrOfCoord[j];
+                        const div = document.getElementById(`${tmpCoord}p`);
+                        div.classList.add('hover');
+                    }
+                }
+            });
+
+            placementSquare.addEventListener('mouseleave', (e) => {
+                if (!board.shipTypes[i]) {
+                    return;
+                }
+                const arrOfCoord = [];
+                const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
+                const row = coord[0];
+                const col = coord[1];
+                arrOfCoord.push(coord);
+                if (shipOrientation === 'horizontal') {
+                    for (let j = col + 1; j < col + board.shipTypes[i].size; j++) {
+                        const tmpCoord = [row, j];
+                        arrOfCoord.push(tmpCoord);
+
+                    }
+                } else if (shipOrientation === 'vertical') {
+                    for (let j = row + 1; j < row + board.shipTypes[i].size; j++) {
+                        const tmpCoord = [j, col];
+                        arrOfCoord.push(tmpCoord);
+                    }
+                }
+                if (checkValidity(board, arrOfCoord)) {
+                    for (let j = 0; j < arrOfCoord.length; j++) {
+                        const tmpCoord = arrOfCoord[j];
+                        const div = document.getElementById(`${tmpCoord}p`);
+                        div.classList.remove('hover');
+                    }
+                }
+            });
         });
-
-        // need to show ship highlighted on mouseover
-
-
-        // placementSquares.forEach((placementSquare) => {
-        //     placementSquare.addEventListener('mouseover', (e) => {
-        //         const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
-        //         const row = coord[0];
-        //         const col = coord[1];
-        //         for (let i = col + 1; i < col + 5; i++) {
-        //             const tmpCoord = [row, i];
-        //             console.log(tmpCoord);
-        //             const div = document.getElementById(tmpCoord);
-        //             console.log(div);
-        //             div.focus();
-        //         }
-        //     });
-        // });
-
     }
 
     const createAiBoard = () => {

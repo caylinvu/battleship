@@ -86,10 +86,14 @@ button {
 
 /* ---------------PLACEMENT BOARD--------------- */
 
-
 .placement-board div:hover {
-    background-color: var(--hover-color);
+    /* background-color: var(--hover-color); */
 }
+
+/* .placement-board div:hover,
+.placement-board div:hover ~ .hover {
+    background-color: var(--hover-color);
+} */
 
 .placement-board > .player-ship:hover {
     cursor: default;
@@ -99,6 +103,10 @@ button {
 .hover {
     background-color: var(--hover-color);
 }
+/* .player-ship ~ .hover {
+    background-color: var(--ship-color);
+    pointer-events: none;
+} */
 
 /* ---------------PLACE SHIPS POPUP--------------- */
 
