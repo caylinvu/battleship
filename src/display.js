@@ -3,6 +3,7 @@ const aiContainer = document.querySelector('.ai-board');
 const placementContainer = document.querySelector('.placement-board');
 const shipText = document.querySelector('.ship-text');
 const placementPopup = document.querySelector('.place-ships-popup');
+const rotateBtn = document.querySelector('.rotate-btn');
 
 const display = (() => {
 
@@ -36,13 +37,22 @@ const display = (() => {
         for (let i = 0; i < arrOfCoord.length; i++) {
             if (arrOfCoord[i][0] > 9 || arrOfCoord[i][1] > 9) {
                 validity = false;
-            }
-            if (board.grid[arrOfCoord[i][0]][arrOfCoord[i][1]] === 'X') {
+            } else if (board.grid[arrOfCoord[i][0]][arrOfCoord[i][1]] === 'X') {
                 validity = false;
             }
         }
         return validity;
     }
+
+    let shipOrientation = 'horizontal';
+    
+    rotateBtn.addEventListener('click', () => {
+        if (shipOrientation === 'horizontal') {
+            shipOrientation = 'vertical';
+        } else if (shipOrientation === 'vertical') {
+            shipOrientation = 'horizontal';
+        }
+    });
 
     const createPlayerBoard = (board) => {
         // create player gameboard
@@ -63,9 +73,16 @@ const display = (() => {
                 const row = coord[0];
                 const col = coord[1];
                 arrOfCoord.push(coord);
-                for (let j = col + 1; j < col + board.shipTypes[i].size; j++) {
-                    const tmpCoord = [row, j];
-                    arrOfCoord.push(tmpCoord);
+                if (shipOrientation === 'horizontal') {
+                    for (let j = col + 1; j < col + board.shipTypes[i].size; j++) {
+                        const tmpCoord = [row, j];
+                        arrOfCoord.push(tmpCoord);
+                    }
+                } else if (shipOrientation === 'vertical') {
+                    for (let j = row + 1; j < row + board.shipTypes[i].size; j++) {
+                        const tmpCoord = [j, col];
+                        arrOfCoord.push(tmpCoord);
+                    }
                 }
                 console.log(arrOfCoord);
                 console.log(checkValidity(board, arrOfCoord));
@@ -82,7 +99,6 @@ const display = (() => {
             });
         });
 
-        // need to add ability to rotate
         // need to show ship highlighted on mouseover
 
 
