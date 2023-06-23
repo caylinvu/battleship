@@ -31,6 +31,19 @@ const display = (() => {
         }
     }
 
+    const checkValidity = (board, arrOfCoord) => {
+        let validity = true;
+        for (let i = 0; i < arrOfCoord.length; i++) {
+            if (arrOfCoord[i][0] > 9 || arrOfCoord[i][1] > 9) {
+                validity = false;
+            }
+            if (board.grid[arrOfCoord[i][0]][arrOfCoord[i][1]] === 'X') {
+                validity = false;
+            }
+        }
+        return validity;
+    }
+
     const createPlayerBoard = (board) => {
         // create player gameboard
         createGameboard(playerContainer, '');
@@ -54,23 +67,23 @@ const display = (() => {
                     const tmpCoord = [row, j];
                     arrOfCoord.push(tmpCoord);
                 }
-                console.log(board.shipTypes[i].size);
                 console.log(arrOfCoord);
-                board.placeShip(board.shipTypes[i].size, arrOfCoord);
-                showPlayerShips(board);
-                i++;
-                if (!board.shipTypes[i]) {
-                    placementPopup.style.display = 'none';
-                    return;
+                console.log(checkValidity(board, arrOfCoord));
+                if (checkValidity(board, arrOfCoord)) {
+                    board.placeShip(board.shipTypes[i].size, arrOfCoord);
+                    showPlayerShips(board);
+                    i++;
+                    if (!board.shipTypes[i]) {
+                        placementPopup.style.display = 'none';
+                        return;
+                    }
+                    shipText.textContent = `Place your ${board.shipTypes[i].name}`;
                 }
-                shipText.textContent = `Place your ${board.shipTypes[i].name}`;
             });
         });
 
-        // need to not let you input ship if out of bounds
         // need to add ability to rotate
         // need to show ship highlighted on mouseover
-        // need to add ship to placement board when clicking
 
 
         // placementSquares.forEach((placementSquare) => {
