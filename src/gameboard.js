@@ -1,11 +1,20 @@
 import Ship from "./ship";
 
+const shipText = document.querySelector('.ship-text');
+
 class Gameboard {
     constructor() {
         this.grid = this.createGrid();
         this.ships = [];
         this.missed = [];
         this.allSunkStatus = false;
+        this.shipTypes = [
+            { name: 'Carrier', size: 5 },
+            { name: 'Battleship', size: 4 },
+            { name: 'Cruiser', size: 3 },
+            { name: 'Submarine', size: 3 },
+            { name: 'Destroyer', size: 2 }
+        ];
     }
 
     createGrid() {
@@ -34,9 +43,6 @@ class Gameboard {
     };
 
     receiveAttack(coord) {
-        // if (this.includesArray(this.missed, coord)) {
-        //     return;
-        // }
         const row = coord[0];
         const col = coord[1];
         if (this.grid[row][col] === 'X'){

@@ -9,11 +9,11 @@ const gameloop = (() => {
 
     const player = new Player('player');
     const playerGameboard = new Gameboard();
-    playerGameboard.placeShip(5, [[3,2],[4,2],[5,2],[6,2],[7,2]]);
-    playerGameboard.placeShip(4, [[1,5],[1,6],[1,7],[1,8]]);
-    playerGameboard.placeShip(3, [[5,7],[6,7],[7,7]]);
-    playerGameboard.placeShip(3, [[9,5],[9,6],[9,7]]);
-    playerGameboard.placeShip(2, [[0,0],[0,1]]);
+    // playerGameboard.placeShip(5, [[3,2],[4,2],[5,2],[6,2],[7,2]]);
+    // playerGameboard.placeShip(4, [[1,5],[1,6],[1,7],[1,8]]);
+    // playerGameboard.placeShip(3, [[5,7],[6,7],[7,7]]);
+    // playerGameboard.placeShip(3, [[9,5],[9,6],[9,7]]);
+    // playerGameboard.placeShip(2, [[0,0],[0,1]]);
     display.createPlayerBoard(playerGameboard);
     
 
