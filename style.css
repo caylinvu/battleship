@@ -61,7 +61,7 @@ button {
 
 .player-ship {
     background-color: var(--ship-color);
-    /* pointer-events: none; */
+    pointer-events: none;
 }
 
 .hit {
