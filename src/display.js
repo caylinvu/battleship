@@ -56,37 +56,17 @@ const display = (() => {
     });
 
     const createPlayerBoard = (board) => {
-        // create player gameboard
         createGameboard(playerContainer, '');
-
-        // create placement board
         createGameboard(placementContainer, 'p');
 
-
-        // place initial ship
         let i = 0;
         shipText.textContent = `Place your ${board.shipTypes[i].name}`;
         const placementSquares = document.querySelectorAll('.placement-board > div');
+
         placementSquares.forEach((placementSquare) => {
             placementSquare.addEventListener('click', (e) => {
-                const arrOfCoord = [];
                 const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
-                const row = coord[0];
-                const col = coord[1];
-                arrOfCoord.push(coord);
-                if (shipOrientation === 'horizontal') {
-                    for (let j = col + 1; j < col + board.shipTypes[i].size; j++) {
-                        const tmpCoord = [row, j];
-                        arrOfCoord.push(tmpCoord);
-                    }
-                } else if (shipOrientation === 'vertical') {
-                    for (let j = row + 1; j < row + board.shipTypes[i].size; j++) {
-                        const tmpCoord = [j, col];
-                        arrOfCoord.push(tmpCoord);
-                    }
-                }
-                console.log(arrOfCoord);
-                console.log(checkValidity(board, arrOfCoord));
+                const arrOfCoord = board.calculateCoords(coord, shipOrientation, i);
                 if (checkValidity(board, arrOfCoord)) {
                     board.placeShip(board.shipTypes[i].size, arrOfCoord);
                     showPlayerShips(board);
@@ -100,22 +80,8 @@ const display = (() => {
             });
             
             placementSquare.addEventListener('mouseover', (e) => {
-                const arrOfCoord = [];
                 const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
-                const row = coord[0];
-                const col = coord[1];
-                arrOfCoord.push(coord);
-                if (shipOrientation === 'horizontal') {
-                    for (let j = col + 1; j < col + board.shipTypes[i].size; j++) {
-                        const tmpCoord = [row, j];
-                        arrOfCoord.push(tmpCoord);
-                    }
-                } else if (shipOrientation === 'vertical') {
-                    for (let j = row + 1; j < row + board.shipTypes[i].size; j++) {
-                        const tmpCoord = [j, col];
-                        arrOfCoord.push(tmpCoord);
-                    }
-                }
+                const arrOfCoord = board.calculateCoords(coord, shipOrientation, i);
                 if (checkValidity(board, arrOfCoord)) {
                     for (let j = 0; j < arrOfCoord.length; j++) {
                         const tmpCoord = arrOfCoord[j];
@@ -125,34 +91,14 @@ const display = (() => {
                 }
             });
 
-            placementSquare.addEventListener('mouseleave', (e) => {
+            placementSquare.addEventListener('mouseleave', () => {
                 if (!board.shipTypes[i]) {
                     return;
                 }
-                const arrOfCoord = [];
-                const coord = [Number(e.target.id[0]), Number(e.target.id[2])];
-                const row = coord[0];
-                const col = coord[1];
-                arrOfCoord.push(coord);
-                if (shipOrientation === 'horizontal') {
-                    for (let j = col + 1; j < col + board.shipTypes[i].size; j++) {
-                        const tmpCoord = [row, j];
-                        arrOfCoord.push(tmpCoord);
-
-                    }
-                } else if (shipOrientation === 'vertical') {
-                    for (let j = row + 1; j < row + board.shipTypes[i].size; j++) {
-                        const tmpCoord = [j, col];
-                        arrOfCoord.push(tmpCoord);
-                    }
-                }
-                if (checkValidity(board, arrOfCoord)) {
-                    for (let j = 0; j < arrOfCoord.length; j++) {
-                        const tmpCoord = arrOfCoord[j];
-                        const div = document.getElementById(`${tmpCoord}p`);
-                        div.classList.remove('hover');
-                    }
-                }
+                const divs = document.querySelectorAll('.hover');
+                divs.forEach((div) => {
+                    div.classList.remove('hover');
+                });
             });
         });
     }
@@ -169,7 +115,7 @@ const display = (() => {
         }
     }
 
-    return { createPlayerBoard, createAiBoard, takeAttack }
+    return { createPlayerBoard, createAiBoard, takeAttack, showPlayerShips }
 
 })();
 

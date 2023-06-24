@@ -38,6 +38,25 @@ class Gameboard {
         return ship;
     }
 
+    calculateCoords(coord, orientation, i) {
+        const arrOfCoord = [];
+        const row = coord[0];
+        const col = coord[1];
+        arrOfCoord.push(coord);
+        if (orientation === 'horizontal') {
+            for (let j = col + 1; j < col + this.shipTypes[i].size; j++) {
+                const tmpCoord = [row, j];
+                arrOfCoord.push(tmpCoord);
+            }
+        } else if (orientation === 'vertical') {
+            for (let j = row + 1; j < row + this.shipTypes[i].size; j++) {
+                const tmpCoord = [j, col];
+                arrOfCoord.push(tmpCoord);
+            }
+        }
+        return arrOfCoord;
+    }
+
     includesArray(data, arr) {
         return data.some(item => Array.isArray(item) && item.every((o, i) => Object.is(arr[i], o)));
     };
