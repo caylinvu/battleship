@@ -8,13 +8,13 @@ const placementPopup = document.querySelector('.place-ships-popup');
 
 const gameloop = (() => {
 
-    const player = new Player('player');
-    const playerGameboard = new Gameboard();
+    let player = new Player('player');
+    let playerGameboard = new Gameboard();
     display.createPlayerBoard(playerGameboard);
     
 
-    const ai = new Player('ai');
-    const aiGameboard = new Gameboard();
+    let ai = new Player('ai');
+    let aiGameboard = new Gameboard();
     display.createAiBoard(aiGameboard, ai);
 
     let turn = 'player';
@@ -58,37 +58,37 @@ const gameloop = (() => {
         checkWinner(playerGameboard, aiGameboard);
     }
 
-    // const playAgain = () => {
-    //     window.player = null;
-    //     delete window.player;
-    //     window.playerGameboard = null;
-    //     delete window.playerGameboard;
-    //     window.ai = null;
-    //     delete window.ai;
-    //     window.aiGameboard = null;
-    //     delete window.aiGameboard;
-    //     display.removeDivs();
+    const playAgain = () => {
+        window.player = null;
+        delete window.player;
+        window.playerGameboard = null;
+        delete window.playerGameboard;
+        window.ai = null;
+        delete window.ai;
+        window.aiGameboard = null;
+        delete window.aiGameboard;
+        display.removeDivs();
 
-    //     player = new Player('player');
-    //     console.log(player);
-    //     playerGameboard = new Gameboard();
-    //     console.log(playerGameboard);
-    //     display.createPlayerBoard(playerGameboard);
+        player = new Player('player');
+        console.log(player);
+        playerGameboard = new Gameboard();
+        console.log(playerGameboard);
+        display.createPlayerBoard(playerGameboard);
 
-    //     ai = new Player('ai');
-    //     console.log(ai);
-    //     aiGameboard = new Gameboard();
-    //     console.log(aiGameboard);
-    //     display.createAiBoard(aiGameboard, ai);
+        ai = new Player('ai');
+        console.log(ai);
+        aiGameboard = new Gameboard();
+        console.log(aiGameboard);
+        display.createAiBoard(aiGameboard, ai);
 
-    //     turn = 'player';
-    //     winner = '';
+        turn = 'player';
+        winner = '';
 
-    //     winnerPopup.style.display = 'none';
-    //     placementPopup.style.display = 'block';
-    // }
+        winnerPopup.style.display = 'none';
+        placementPopup.style.display = 'block';
+    }
 
-    return { play, winner }
+    return { play, winner, playAgain }
 
 })();
 

@@ -129,16 +129,16 @@ const display = (() => {
         }
 
         // REMOVE BELOW THIS LATER
-        const aiSquares = document.querySelectorAll('.ai-board > div');
-        let i = 0;
-        for (let j = 0; j < 10; j++) {
-            for(let k = 0; k < 10 ; k++) {
-                if (board.grid[j][k] === 'X') {
-                    aiSquares[i].classList.add('player-ship');
-                }
-                i++;
-            }
-        }
+        // const aiSquares = document.querySelectorAll('.ai-board > div');
+        // let i = 0;
+        // for (let j = 0; j < 10; j++) {
+        //     for(let k = 0; k < 10 ; k++) {
+        //         if (board.grid[j][k] === 'X') {
+        //             aiSquares[i].classList.add('player-ship');
+        //         }
+        //         i++;
+        //     }
+        // }
         // REMOVE ABOVE THIS LATER
     }
 
