@@ -1,7 +1,5 @@
 import Ship from "./ship";
 
-const shipText = document.querySelector('.ship-text');
-
 class Gameboard {
     constructor() {
         this.grid = this.createGrid();
@@ -38,18 +36,18 @@ class Gameboard {
         return ship;
     }
 
-    calculateCoords(coord, orientation, i) {
+    calculateCoords(coord, orientation, inc) {
         const arrOfCoord = [];
         const row = coord[0];
         const col = coord[1];
         arrOfCoord.push(coord);
         if (orientation === 'horizontal') {
-            for (let j = col + 1; j < col + this.shipTypes[i].size; j++) {
+            for (let j = col + 1; j < col + this.shipTypes[inc].size; j++) {
                 const tmpCoord = [row, j];
                 arrOfCoord.push(tmpCoord);
             }
         } else if (orientation === 'vertical') {
-            for (let j = row + 1; j < row + this.shipTypes[i].size; j++) {
+            for (let j = row + 1; j < row + this.shipTypes[inc].size; j++) {
                 const tmpCoord = [j, col];
                 arrOfCoord.push(tmpCoord);
             }

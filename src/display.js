@@ -103,8 +103,43 @@ const display = (() => {
         });
     }
 
-    const createAiBoard = () => {
+    const randomAIOrientation = () => {
+        const tmp = Math.floor(Math.random() * 2);
+        if (tmp === 0) {
+            return 'horizontal';
+        }
+        return 'vertical';
+    }
+
+    const createAiBoard = (board, player) => {
         createGameboard(aiContainer, '');
+
+        for (let j = 0; j < board.shipTypes.length; j++) {
+            let randomCoord = player.randomCoord();
+            let aiOrientation = randomAIOrientation();
+            let arrOfCoord = board.calculateCoords(randomCoord, aiOrientation, j);
+
+            while (!checkValidity(board, arrOfCoord)) {
+                randomCoord = player.randomCoord();
+                aiOrientation = randomAIOrientation();
+                arrOfCoord = board.calculateCoords(randomCoord, aiOrientation, j);
+            }
+
+            board.placeShip(board.shipTypes[j].size, arrOfCoord);
+        }
+
+        // REMOVE BELOW THIS LATER
+        const aiSquares = document.querySelectorAll('.ai-board > div');
+        let i = 0;
+        for (let j = 0; j < 10; j++) {
+            for(let k = 0; k < 10 ; k++) {
+                if (board.grid[j][k] === 'X') {
+                    aiSquares[i].classList.add('player-ship');
+                }
+                i++;
+            }
+        }
+        // REMOVE ABOVE THIS LATER
     }
 
     const takeAttack = (coord, board, div) => {
@@ -115,7 +150,19 @@ const display = (() => {
         }
     }
 
-    return { createPlayerBoard, createAiBoard, takeAttack, showPlayerShips }
+    const removeDivs = () => {
+        while (playerContainer.firstChild) {
+            playerContainer.removeChild(playerContainer.firstChild);
+        }
+        while (aiContainer.firstChild) {
+            aiContainer.removeChild(aiContainer.firstChild);
+        }
+        while (placementContainer.firstChild) {
+            placementContainer.removeChild(placementContainer.firstChild);
+        }
+    }
+
+    return { createPlayerBoard, createAiBoard, takeAttack, showPlayerShips, removeDivs }
 
 })();
 
