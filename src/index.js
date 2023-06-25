@@ -8,7 +8,6 @@ playAgainBtn.addEventListener('click', () => {
     aiSquares = document.querySelectorAll('.ai-board > div');
     aiSquares.forEach((aiSquare) => {
         aiSquare.addEventListener('click', (e) => {
-            console.log(e.target);
             gameloop.play(e);
             gameloop.play(e);
         });
@@ -17,8 +16,13 @@ playAgainBtn.addEventListener('click', () => {
 
 aiSquares.forEach((aiSquare) => {
     aiSquare.addEventListener('click', (e) => {
-        console.log(e.target);
         gameloop.play(e);
         gameloop.play(e);
     });
 });
+
+// make UI prettier
+
+// implement mobile view
+
+// clean up code

@@ -45,16 +45,6 @@ const display = (() => {
         return validity;
     }
 
-    let shipOrientation = 'horizontal';
-    
-    rotateBtn.addEventListener('click', () => {
-        if (shipOrientation === 'horizontal') {
-            shipOrientation = 'vertical';
-        } else if (shipOrientation === 'vertical') {
-            shipOrientation = 'horizontal';
-        }
-    });
-
     const createPlayerBoard = (board) => {
         createGameboard(playerContainer, '');
         createGameboard(placementContainer, 'p');
@@ -62,6 +52,15 @@ const display = (() => {
         let i = 0;
         shipText.textContent = `Place your ${board.shipTypes[i].name}`;
         const placementSquares = document.querySelectorAll('.placement-board > div');
+        let shipOrientation = 'horizontal';
+    
+        rotateBtn.addEventListener('click', () => {
+            if (shipOrientation === 'horizontal') {
+                shipOrientation = 'vertical';
+            } else if (shipOrientation === 'vertical') {
+                shipOrientation = 'horizontal';
+            }
+        });
 
         placementSquares.forEach((placementSquare) => {
             placementSquare.addEventListener('click', (e) => {
@@ -127,19 +126,6 @@ const display = (() => {
 
             board.placeShip(board.shipTypes[j].size, arrOfCoord);
         }
-
-        // REMOVE BELOW THIS LATER
-        // const aiSquares = document.querySelectorAll('.ai-board > div');
-        // let i = 0;
-        // for (let j = 0; j < 10; j++) {
-        //     for(let k = 0; k < 10 ; k++) {
-        //         if (board.grid[j][k] === 'X') {
-        //             aiSquares[i].classList.add('player-ship');
-        //         }
-        //         i++;
-        //     }
-        // }
-        // REMOVE ABOVE THIS LATER
     }
 
     const takeAttack = (coord, board, div) => {
