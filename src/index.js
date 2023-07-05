@@ -20,7 +20,3 @@ aiSquares.forEach((aiSquare) => {
         gameloop.play(e);
     });
 });
-
-// make button click nicer
-
-// clean up code
