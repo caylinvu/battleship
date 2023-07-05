@@ -21,8 +21,6 @@ aiSquares.forEach((aiSquare) => {
     });
 });
 
-// make UI prettier
-
 // implement mobile view
 
 // clean up code
