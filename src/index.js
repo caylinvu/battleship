@@ -21,6 +21,6 @@ aiSquares.forEach((aiSquare) => {
     });
 });
 
-// implement mobile view
+// make button click nicer
 
 // clean up code
