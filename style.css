@@ -139,10 +139,6 @@ button {
     color: var(--secondary-color);
 }
 
-.rotate-btn:hover {
-    cursor: pointer;
-}
-
 /* ---------------WINNER POPUP--------------- */
 
 .winner-popup {
@@ -179,8 +175,16 @@ button {
     color: var(--secondary-color);
 }
 
+.rotate-btn:hover,
 .play-again-btn:hover {
     cursor: pointer;
+    background-color: var(--ship-color);
+    transition: .2s;
+}
+
+.rotate-btn:active,
+.play-again-btn:active {
+    background-color: var(--primary-color);
 }
 
 /* ---------------FOOTER--------------- */
