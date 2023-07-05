@@ -1,8 +1,8 @@
 :root {
     --primary-color: #000000;
-    --secondary-color: #ffffff;
-    --ship-color: #2f4f4f;
-    --hover-color: #e9e9e9;
+    --secondary-color: #eeeeee;
+    --ship-color: #415355;
+    --hover-color: #dadada;
     --hit-color: #ff9d84;
     --miss-color: #92e092;
     --blocker-color: rgba(0, 0, 0, .5);
@@ -11,6 +11,9 @@
 body {
     margin: 0;
     font-size: 50px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-family: 'Varela Round', sans-serif;
 }
 
 button {
@@ -21,7 +24,8 @@ button {
 .header {
     text-align: center;
     font-size: 100px;
-    padding: 50px 50px 100px;
+    padding: 50px 50px 75px;
+    font-family: 'Abril Fatface', cursive;
 }
 
 /* ---------------MAIN CONTENT/GAMEBOARDS--------------- */
@@ -85,10 +89,6 @@ button {
 }
 
 /* ---------------PLACEMENT BOARD--------------- */
-
-/* .place-ships-popup {
-    display: none;
-} */
 
 .placement-board > .player-ship:hover {
     cursor: default;
